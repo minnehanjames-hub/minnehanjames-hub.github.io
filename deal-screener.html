@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Deal Screener</title>
+
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            background-color: #0d1117;
+            color: #f0f6fc;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        p.description {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #9da5b4;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #c9d1d9;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            background-color: #0d1117;
+            color: white;
+        }
+
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            background-color: #238636;
+            border: none;
+            color: white;
+            font-size: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2ea043;
+        }
+
+        .results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #1c2128;
+            border-radius: 10px;
+            border: 1px solid #30363d;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 18px;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Apex Deal Screener</h1>
+<p class="description">Lightweight HTML-based valuation screener for sector multiples, earnings, and upside analysis.</p>
+
+<div class="container">
+    <label>Revenue (in millions):</label>
+    <input id="revenue" type="number">
+
+    <label>EBITDA (in millions):</label>
+    <input id="ebitda" type="number">
+
+    <label>Selected EV/EBITDA Multiple:</label>
+    <input id="multiple" type="number">
+
+    <button onclick="calculate()">Calculate Valuation</button>
+
+    <div class="results" id="results" style="display:none;"></div>
+</div>
+
+<a class="back-link" href="index.html">← Back to Portfolio</a>
+
+<script>
+    function calculate() {
+        let rev = parseFloat(document.getElementById("revenue").value);
+        let ebitda = parseFloat(document.getElementById("ebitda").value);
+        let multiple = parseFloat(document.getElementById("multiple").value);
+
+        if (isNaN(rev) || isNaN(ebitda) || isNaN(multiple)) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        let valuation = ebitda * multiple;
+
+        document.getElementById("results").innerHTML = `
+            <h2>Valuation Results</h2>
+            <p><strong>EBITDA:</strong> $${ebitda.toLocaleString()}M</p>
+            <p><strong>Multiple:</strong> ${multiple}x</p>
+            <p><strong>Implied Enterprise Value:</strong> $${valuation.toLocaleString()}M</p>
+        `;
+        document.getElementById("results").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
