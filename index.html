@@ -2,101 +2,798 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>James Minnehan — Projects </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="James Minnehan's personal site and project lab for finance, valuation, portfolio analysis, and game theory tools." />
+  <title>James Minnehan | Finance Tools and Project Lab</title>
   <style>
     :root {
-      --bg:#0b0f14;--card:#0f141a;--text:#e6e8ea;--muted:#9aa4ae;--acc:#10b981;
+      --ink: #f7f3e8;
+      --paper: #fbf8ef;
+      --muted: #aeb7bd;
+      --night: #07090d;
+      --night-2: #101820;
+      --line: rgba(247, 243, 232, 0.16);
+      --line-dark: #d8d1c1;
+      --green: #4ec9a2;
+      --blue: #67a9ff;
+      --gold: #d8b35f;
+      --red: #e46f61;
+      --max: 1180px;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      margin:0;
-      background:linear-gradient(180deg,#0b0f14,#0a0e13);
-      color:var(--text);
-      font-family:"Times New Roman", Times, serif;
-      font-size:16px;
-      line-height:1.6;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--night);
+      background: var(--paper);
+      line-height: 1.55;
     }
-    .wrap { max-width:1050px;margin:0 auto;padding:56px 20px; }
-    h1 { margin:0 0 6px;font-size:36px; }
-    p { margin:6px 0;color:var(--muted); }
-    .grid { display:grid;gap:18px;margin-top:24px; }
-    @media(min-width:780px){.grid{grid-template-columns:repeat(3,1fr)}}
-    .card {
-      display:block;background:var(--card);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:16px;
-      padding:18px;
-      text-decoration:none;
-      color:var(--text);
-      transition:.2s;
-      box-shadow:0 10px 32px rgba(0,0,0,.30);
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    .card:hover {
-      border-color:var(--acc);
-      transform:translateY(-2px);
-      box-shadow:0 14px 40px rgba(16,185,129,.25);
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(247, 243, 232, 0.12);
+      background: rgba(7, 9, 13, 0.74);
+      backdrop-filter: blur(18px);
+      color: var(--ink);
     }
-    .title { font-weight:700;margin:0 0 6px; }
-    .badge { font-size:12px;color:#a7f3d0; }
-    .footer { margin-top:28px;color:var(--muted);font-size:14px; }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(247, 243, 232, 0.36);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      color: var(--green);
+      background: #0c1216;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 13px;
+      color: #dce5e8;
+    }
+
+    .nav-links a {
+      padding: 7px 9px;
+      border: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-color: rgba(247, 243, 232, 0.22);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 96vh;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(7, 9, 13, 0.92), rgba(10, 16, 20, 0.82)),
+        #07090d;
+      color: var(--ink);
+      display: grid;
+      align-items: end;
+      padding: 120px 20px 56px;
+    }
+
+    #signal-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.85;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 28vh;
+      background: linear-gradient(0deg, rgba(251, 248, 239, 1), rgba(251, 248, 239, 0));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.72fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 840px;
+      font-size: clamp(48px, 9vw, 116px);
+      line-height: 0.9;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      margin: 24px 0 0;
+      max-width: 680px;
+      color: #d7dedf;
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 15px;
+      border: 1px solid currentColor;
+      font-size: 14px;
+      font-weight: 700;
+      background: transparent;
+      color: inherit;
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: var(--night);
+      border-color: var(--ink);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .lab-panel {
+      border: 1px solid var(--line);
+      background: rgba(8, 12, 16, 0.74);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+      padding: 18px;
+    }
+
+    .lab-panel h2 {
+      margin: 0 0 14px;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .ticker {
+      display: grid;
+      gap: 10px;
+    }
+
+    .ticker-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      border-bottom: 1px solid rgba(247, 243, 232, 0.1);
+      padding-bottom: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    .ticker-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .ticker-row span {
+      color: var(--green);
+    }
+
+    .section {
+      position: relative;
+      padding: 88px 20px;
+    }
+
+    .section.dark {
+      background: var(--night);
+      color: var(--ink);
+    }
+
+    .wrap {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(260px, 0.42fr);
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: #5e6467;
+    }
+
+    .dark .section-title p {
+      color: var(--muted);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      min-height: 270px;
+      border: 1px solid var(--line-dark);
+      background: #fffdf8;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: space-between;
+      border-radius: 8px;
+    }
+
+    .project-card.featured {
+      grid-column: span 2;
+      background: #101820;
+      color: var(--ink);
+      border-color: rgba(247, 243, 232, 0.22);
+    }
+
+    .project-card:hover {
+      border-color: #0f766e;
+      transform: translateY(-2px);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .project-card p {
+      margin: 12px 0 0;
+      color: #5e6467;
+    }
+
+    .project-card.featured p {
+      color: #cbd5d7;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      border: 1px solid currentColor;
+      padding: 4px 7px;
+      font-size: 11px;
+      color: #0f766e;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .featured .tag {
+      color: var(--green);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .project-links a {
+      border-bottom: 1px solid currentColor;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(260px, 0.55fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .story {
+      border-left: 2px solid var(--green);
+      padding-left: 20px;
+      color: #d9e0df;
+      font-size: 19px;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .detail {
+      border: 1px solid var(--line);
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.035);
+      border-radius: 8px;
+    }
+
+    .detail strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--green);
+    }
+
+    .detail span {
+      color: var(--muted);
+    }
+
+    .contact-band {
+      border-top: 1px solid var(--line-dark);
+      border-bottom: 1px solid var(--line-dark);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 26px 0;
+    }
+
+    .contact-band h2 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+    }
+
+    .contact-band p {
+      margin: 0;
+      color: #5e6467;
+    }
+
+    footer {
+      padding: 28px 20px 42px;
+      background: var(--paper);
+      color: #5e6467;
+      font-size: 13px;
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner,
+      .section-title,
+      .split,
+      .contact-band {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card.featured {
+        grid-column: auto;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .button:hover,
+      .project-card:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>James Minnehan — Projects</h1>
-    <p> All my finance tools and dashboards in one place.</p>
-
-      <a class="card" href="https://minnehanjames-hub.github.io/valuation-site/" target="_blank">
-        <p class="title">Valuation Site</p>
-        <p class="badge">GitHub Pages</p>
-        <p>Static notes / demos for comps and DCF assumptions.</p>
+  <div class="topbar">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="James Minnehan home">
+        <span class="brand-mark">JM</span>
+        <span>James Minnehan</span>
       </a>
-        <a class="card" href="https://minnehanjames-hub.github.io/game-theory-playground/" target="_blank">
-    <p class="title">Game Theory Playground</p>
-    <p class="badge">GitHub Pages · HTML / JS</p>
-    <p>
-      Simple interactive site that lets you change a 2×2 payoff table and see
-      the best choices for each player and whether there is a Nash equilibrium.
-    </p>
-  </a>
-    <a class="card" href="https://minnehanjames-hub.github.io/portfolio-optimizer/" target="_blank">
-  <p class="title">Monte Carlo Portfolio Optimizer</p>
-  <p class="badge">HTML · JavaScript · Quant</p>
-  <p>
-    Interactive browser-based optimizer using Monte Carlo simulations, diversification scoring,
-    and risk metrics like Sharpe, Alpha, Tracking Error, Information Ratio, and Sortino.
-  </p>
-
-      <!-- New FinTrend News card -->
-      <a class="card" href="https://fintrend.news/" target="_blank">
-  <p class="title">FinTrend News</p>
-  <p class="badge">Market Newsletter · GitHub Pages</p>
-  <p>
-    Market recap posted on Mondays, Wednesdays, Fridays, and Sundays covering important
-    movements in North American markets.
-  </p>
-</a>
-
-      <a class="card" href="https://minnehanjames-hub.github.io/deal-screener/" target="_blank">
-  <p class="title">Apex Deal Screener</p>
-  <p class="badge">HTML • Valuation • P/E</p>
-  <p>
-    Lightweight valuation tool using earnings, sector multiples,
-    and upside calculations — all in static HTML/JS.
-  </p>
-</a>
-      <a class="card" href="https://github.com/minnehanjames-hub" target="_blank">
-        <p class="title">All Repos</p>
-        <p class="badge">GitHub</p>
-        <p>Browse source code, commits, and releases.</p>
-      </a>
-
-</div>
-
-
-
-    <p class="footer">Is there an issue? Email me at minnehanjames@gmail.com. Or Message me on linkedin https://www.linkedin.com/in/james-thomas-minnehan-975b7533b/</p>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/minnehanjames-hub" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </nav>
   </div>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas id="signal-canvas" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Finance tools, market thinking, and small useful systems</p>
+          <h1 id="hero-title">James Minnehan builds practical finance labs.</h1>
+          <p class="hero-copy">
+            I like tools that make a concept feel usable: valuation mechanics, portfolio risk,
+            deal screening, game theory, and market recaps that get to the point.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">View the Lab</a>
+            <a class="button" href="mailto:minnehanjames@gmail.com">Email Me</a>
+            <a class="button" href="https://www.linkedin.com/in/james-thomas-minnehan-975b7533b/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+
+        <aside class="lab-panel" aria-label="Current project board">
+          <h2>Live Project Board</h2>
+          <div class="ticker">
+            <div class="ticker-row"><strong>VALUATION</strong><span>LBO / DCF / comps</span></div>
+            <div class="ticker-row"><strong>PORTFOLIO</strong><span>risk and allocation</span></div>
+            <div class="ticker-row"><strong>SCREENER</strong><span>quick multiple checks</span></div>
+            <div class="ticker-row"><strong>THEORY</strong><span>payoffs and equilibria</span></div>
+            <div class="ticker-row"><strong>MARKETS</strong><span>FinTrend News</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>Selected projects with a real point of view.</h2>
+          <p>
+            These started as early experiments. The goal now is to make each one feel focused,
+            useful, and clearly connected to finance instead of looking like a generic demo.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card featured">
+            <div>
+              <div class="project-top">
+                <h3>Valuation Workbench</h3>
+                <span class="tag">Finance</span>
+              </div>
+              <p>
+                A browser-based LBO, DCF, and multiples calculator for seeing how leverage,
+                growth, discount rates, and exit assumptions move value.
+              </p>
+            </div>
+            <div class="project-links">
+              <a href="https://minnehanjames-hub.github.io/valuation-site/" target="_blank" rel="noreferrer">Open tool</a>
+              <a href="https://github.com/minnehanjames-hub/valuation-site" target="_blank" rel="noreferrer">Source</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-top">
+                <h3>Deal Screener</h3>
+                <span class="tag">Valuation</span>
+              </div>
+              <p>
+                A quick P/E re-rating model that combines current earnings, growth, and target
+                multiples into a clean upside case.
+              </p>
+            </div>
+            <div class="project-links">
+              <a href="https://minnehanjames-hub.github.io/deal-screener/" target="_blank" rel="noreferrer">Open tool</a>
+              <a href="https://github.com/minnehanjames-hub/deal-screener" target="_blank" rel="noreferrer">Source</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-top">
+                <h3>Portfolio Optimizer</h3>
+                <span class="tag">Risk</span>
+              </div>
+              <p>
+                A Monte Carlo allocation tool for experimenting with holdings, horizon,
+                diversification, and risk-adjusted metrics.
+              </p>
+            </div>
+            <div class="project-links">
+              <a href="https://minnehanjames-hub.github.io/portfolio-optimizer/" target="_blank" rel="noreferrer">Open tool</a>
+              <a href="https://github.com/minnehanjames-hub/portfolio-optimizer" target="_blank" rel="noreferrer">Source</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-top">
+                <h3>Game Theory Playground</h3>
+                <span class="tag">Theory</span>
+              </div>
+              <p>
+                An editable payoff matrix that makes best responses, pure Nash equilibria,
+                and mixed strategies easier to see.
+              </p>
+            </div>
+            <div class="project-links">
+              <a href="https://minnehanjames-hub.github.io/game-theory-playground/" target="_blank" rel="noreferrer">Open tool</a>
+              <a href="https://github.com/minnehanjames-hub/game-theory-playground" target="_blank" rel="noreferrer">Source</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-top">
+                <h3>FinTrend News</h3>
+                <span class="tag">Markets</span>
+              </div>
+              <p>
+                A market recap project covering important North American market movements on
+                a recurring publishing schedule.
+              </p>
+            </div>
+            <div class="project-links">
+              <a href="https://fintrend.news/" target="_blank" rel="noreferrer">Read</a>
+              <a href="https://github.com/minnehanjames-hub/FinTrend_News" target="_blank" rel="noreferrer">Source</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="about">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">What belongs on a personal site</p>
+          <h2 style="margin: 0 0 18px; font-size: clamp(34px, 5vw, 62px); line-height: 1.02;">
+            A great personal site should show taste, direction, and proof.
+          </h2>
+          <p class="story">
+            Mine is built around the work itself: finance concepts turned into small,
+            interactive tools. The best version of this site is not just a list of links.
+            It should make someone understand what you are interested in, what you can build,
+            and how you think through a problem.
+          </p>
+        </div>
+
+        <div class="detail-list" aria-label="Site ingredients">
+          <div class="detail">
+            <strong>Clear identity</strong>
+            <span>Your name, what you focus on, and why the projects fit together.</span>
+          </div>
+          <div class="detail">
+            <strong>Selected work</strong>
+            <span>Only the projects you would actually want someone to click.</span>
+          </div>
+          <div class="detail">
+            <strong>Short project context</strong>
+            <span>What it does, what it teaches, and what you improved.</span>
+          </div>
+          <div class="detail">
+            <strong>Easy contact</strong>
+            <span>Email, LinkedIn, and GitHub without making people hunt for them.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact-band">
+          <div>
+            <h2>Want to talk markets, valuation, or project ideas?</h2>
+            <p>I am always happy to connect, compare notes, or get feedback on the lab.</p>
+          </div>
+          <div class="hero-actions" style="margin-top: 0;">
+            <a class="button primary" href="mailto:minnehanjames@gmail.com">minnehanjames@gmail.com</a>
+            <a class="button" href="https://www.linkedin.com/in/james-thomas-minnehan-975b7533b/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Built and maintained by James Minnehan.</span>
+      <span>Finance tools are educational and not investment advice.</span>
+    </div>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("signal-canvas");
+    const ctx = canvas.getContext("2d");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let width = 0;
+    let height = 0;
+    let points = [];
+    let mouse = { x: 0.5, y: 0.5 };
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildPoints();
+    }
+
+    function buildPoints() {
+      const count = Math.max(48, Math.floor((width * height) / 25000));
+      points = Array.from({ length: count }, (_, index) => ({
+        x: (index * 181) % Math.max(width, 1),
+        y: (index * 97) % Math.max(height, 1),
+        vx: ((index % 7) - 3) * 0.035,
+        vy: ((index % 5) - 2) * 0.035,
+        size: 1 + (index % 3) * 0.55
+      }));
+    }
+
+    function drawGrid() {
+      ctx.strokeStyle = "rgba(247, 243, 232, 0.055)";
+      ctx.lineWidth = 1;
+      const gap = 46;
+      for (let x = 0; x < width; x += gap) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += gap) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+    }
+
+    function drawTape(time) {
+      const baseY = height * 0.23;
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "rgba(78, 201, 162, 0.48)";
+      ctx.beginPath();
+      for (let x = 0; x <= width; x += 8) {
+        const y = baseY +
+          Math.sin(x * 0.012 + time * 0.0011) * 24 +
+          Math.sin(x * 0.031 + time * 0.0008) * 10;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      ctx.strokeStyle = "rgba(103, 169, 255, 0.34)";
+      ctx.beginPath();
+      for (let x = 0; x <= width; x += 8) {
+        const y = height * 0.58 +
+          Math.sin(x * 0.01 + time * 0.0007) * 35 +
+          Math.cos(x * 0.02 + time * 0.001) * 14;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    function drawPoints() {
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        const pullX = (mouse.x * width - p.x) * 0.00003;
+        const pullY = (mouse.y * height - p.y) * 0.00003;
+        if (!reducedMotion) {
+          p.x += p.vx + pullX;
+          p.y += p.vy + pullY;
+        }
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.fillStyle = i % 5 === 0 ? "rgba(216, 179, 95, 0.72)" : "rgba(247, 243, 232, 0.6)";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = i + 1; j < points.length; j++) {
+          const q = points[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 118) {
+            ctx.strokeStyle = `rgba(78, 201, 162, ${0.16 * (1 - dist / 118)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function frame(time) {
+      ctx.clearRect(0, 0, width, height);
+      drawGrid();
+      drawTape(time);
+      drawPoints();
+      if (!reducedMotion) requestAnimationFrame(frame);
+    }
+
+    window.addEventListener("resize", resize);
+    window.addEventListener("pointermove", (event) => {
+      mouse = {
+        x: event.clientX / Math.max(window.innerWidth, 1),
+        y: event.clientY / Math.max(window.innerHeight, 1)
+      };
+    });
+
+    resize();
+    frame(0);
+  </script>
 </body>
 </html>
