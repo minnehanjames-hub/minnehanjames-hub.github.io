@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="James Minnehan's personal site and project lab for finance, valuation, portfolio analysis, and game theory tools." />
-  <title>James Minnehan | Finance Tools and Project Lab</title>
+  <meta name="description" content="James Minnehan's personal site for finance, markets, AI/ML, and student-built finance tools." />
+  <title>James Minnehan | Finance, Markets, and AI Projects</title>
   <style>
     :root {
       --ink: #f7f3e8;
@@ -186,6 +186,7 @@
       font-weight: 700;
       background: transparent;
       color: inherit;
+      cursor: pointer;
     }
 
     .button.primary {
@@ -196,6 +197,11 @@
 
     .button:hover {
       transform: translateY(-1px);
+    }
+
+    .button.disabled {
+      opacity: 0.62;
+      cursor: not-allowed;
     }
 
     .lab-panel {
@@ -235,6 +241,7 @@
 
     .ticker-row span {
       color: var(--green);
+      text-align: right;
     }
 
     .section {
@@ -368,6 +375,14 @@
       font-size: 19px;
     }
 
+    .story p {
+      margin: 0 0 16px;
+    }
+
+    .story p:last-child {
+      margin-bottom: 0;
+    }
+
     .detail-list {
       display: grid;
       gap: 10px;
@@ -449,6 +464,14 @@
         align-items: flex-start;
         flex-direction: column;
       }
+
+      .ticker-row {
+        grid-template-columns: 1fr;
+      }
+
+      .ticker-row span {
+        text-align: left;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -484,27 +507,27 @@
       <canvas id="signal-canvas" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <div>
-          <p class="eyebrow">Finance tools, market thinking, and small useful systems</p>
-          <h1 id="hero-title">James Minnehan builds practical finance labs.</h1>
+          <p class="eyebrow">Finance, markets, AI/ML, and student-built systems</p>
+          <h1 id="hero-title">James Minnehan builds finance and market tools.</h1>
           <p class="hero-copy">
-            I like tools that make a concept feel usable: valuation mechanics, portfolio risk,
-            deal screening, game theory, and market recaps that get to the point.
+            I’m a freshman student-builder interested in finance, AI/ML, and markets. I build projects that help me understand valuation, risk, market trends, and how technology can make financial analysis clearer and faster.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#projects">View the Lab</a>
+            <a class="button primary" href="#projects">View Projects</a>
             <a class="button" href="mailto:minnehanjames@gmail.com">Email Me</a>
             <a class="button" href="https://www.linkedin.com/in/james-thomas-minnehan-975b7533b/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="button disabled" href="#" aria-disabled="true">Resume Coming Soon</a>
           </div>
         </div>
 
-        <aside class="lab-panel" aria-label="Current project board">
-          <h2>Live Project Board</h2>
+        <aside class="lab-panel" aria-label="Current focus board">
+          <h2>Current Focus</h2>
           <div class="ticker">
-            <div class="ticker-row"><strong>VALUATION</strong><span>LBO / DCF / comps</span></div>
-            <div class="ticker-row"><strong>PORTFOLIO</strong><span>risk and allocation</span></div>
-            <div class="ticker-row"><strong>SCREENER</strong><span>quick multiple checks</span></div>
-            <div class="ticker-row"><strong>THEORY</strong><span>payoffs and equilibria</span></div>
             <div class="ticker-row"><strong>MARKETS</strong><span>FinTrend News</span></div>
+            <div class="ticker-row"><strong>FINANCE</strong><span>valuation and screening</span></div>
+            <div class="ticker-row"><strong>AI / ML</strong><span>research workflows</span></div>
+            <div class="ticker-row"><strong>PORTFOLIO</strong><span>risk and allocation</span></div>
+            <div class="ticker-row"><strong>CHESS</strong><span>strategy and pattern recognition</span></div>
           </div>
         </aside>
       </div>
@@ -513,10 +536,9 @@
     <section class="section" id="projects">
       <div class="wrap">
         <div class="section-title">
-          <h2>Selected projects with a real point of view.</h2>
+          <h2>Projects that show how I think and build.</h2>
           <p>
-            These started as early experiments. The goal now is to make each one feel focused,
-            useful, and clearly connected to finance instead of looking like a generic demo.
+            These projects connect my interests in finance, markets, AI, and systems. I’m still early, but I’m focused on building useful work instead of only talking about what I’m interested in.
           </p>
         </div>
 
@@ -524,12 +546,27 @@
           <article class="project-card featured">
             <div>
               <div class="project-top">
+                <h3>FinTrend News</h3>
+                <span class="tag">Markets</span>
+              </div>
+              <p>
+                A market newsletter built with a 5-person team, focused on clear and concise updates on markets, macro, and key trends. I worked on improving the research and publishing system behind it, including using AI to make content faster and more structured.
+              </p>
+            </div>
+            <div class="project-links">
+              <a href="https://fintrend.news/" target="_blank" rel="noreferrer">Read</a>
+              <a href="https://github.com/minnehanjames-hub/FinTrend_News" target="_blank" rel="noreferrer">Source</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-top">
                 <h3>Valuation Workbench</h3>
                 <span class="tag">Finance</span>
               </div>
               <p>
-                A browser-based LBO, DCF, and multiples calculator for seeing how leverage,
-                growth, discount rates, and exit assumptions move value.
+                A browser-based LBO, DCF, and multiples calculator for testing how leverage, growth, discount rates, and exit assumptions affect value.
               </p>
             </div>
             <div class="project-links">
@@ -545,8 +582,7 @@
                 <span class="tag">Valuation</span>
               </div>
               <p>
-                A quick P/E re-rating model that combines current earnings, growth, and target
-                multiples into a clean upside case.
+                A quick P/E re-rating model that combines current earnings, growth, and target multiples into a simple upside case.
               </p>
             </div>
             <div class="project-links">
@@ -562,8 +598,7 @@
                 <span class="tag">Risk</span>
               </div>
               <p>
-                A Monte Carlo allocation tool for experimenting with holdings, horizon,
-                diversification, and risk-adjusted metrics.
+                A Monte Carlo allocation tool for experimenting with holdings, time horizon, diversification, and risk-adjusted metrics.
               </p>
             </div>
             <div class="project-links">
@@ -579,30 +614,12 @@
                 <span class="tag">Theory</span>
               </div>
               <p>
-                An editable payoff matrix that makes best responses, pure Nash equilibria,
-                and mixed strategies easier to see.
+                An editable payoff matrix that makes best responses, pure Nash equilibria, and mixed strategies easier to see.
               </p>
             </div>
             <div class="project-links">
               <a href="https://minnehanjames-hub.github.io/game-theory-playground/" target="_blank" rel="noreferrer">Open tool</a>
               <a href="https://github.com/minnehanjames-hub/game-theory-playground" target="_blank" rel="noreferrer">Source</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div>
-              <div class="project-top">
-                <h3>FinTrend News</h3>
-                <span class="tag">Markets</span>
-              </div>
-              <p>
-                A market recap project covering important North American market movements on
-                a recurring publishing schedule.
-              </p>
-            </div>
-            <div class="project-links">
-              <a href="https://fintrend.news/" target="_blank" rel="noreferrer">Read</a>
-              <a href="https://github.com/minnehanjames-hub/FinTrend_News" target="_blank" rel="noreferrer">Source</a>
             </div>
           </article>
         </div>
@@ -612,34 +629,39 @@
     <section class="section dark" id="about">
       <div class="wrap split">
         <div>
-          <p class="eyebrow">What belongs on a personal site</p>
+          <p class="eyebrow">About me</p>
           <h2 style="margin: 0 0 18px; font-size: clamp(34px, 5vw, 62px); line-height: 1.02;">
-            A great personal site should show taste, direction, and proof.
+            I’m interested in the intersection of finance, technology, and markets.
           </h2>
-          <p class="story">
-            Mine is built around the work itself: finance concepts turned into small,
-            interactive tools. The best version of this site is not just a list of links.
-            It should make someone understand what you are interested in, what you can build,
-            and how you think through a problem.
-          </p>
+          <div class="story">
+            <p>
+              I’m a freshman student currently transferring to Universidad de Navarra. I’m focused on finance, AI/ML, and markets, and I like building small projects that turn ideas into something people can actually use.
+            </p>
+            <p>
+              Through FinTrend News and my finance tools, I’ve learned how to work around different systems, organize research, and use AI beyond the surface level to make workflows faster and more structured.
+            </p>
+            <p>
+              Right now, I’m focused on building stronger projects at the intersection of finance, markets, and technology while continuing to improve how I think through research, models, and systems.
+            </p>
+          </div>
         </div>
 
-        <div class="detail-list" aria-label="Site ingredients">
+        <div class="detail-list" aria-label="Personal focus areas">
           <div class="detail">
-            <strong>Clear identity</strong>
-            <span>Your name, what you focus on, and why the projects fit together.</span>
+            <strong>Markets and finance</strong>
+            <span>I’m interested in valuation, market trends, investing, and how financial decisions are made.</span>
           </div>
           <div class="detail">
-            <strong>Selected work</strong>
-            <span>Only the projects you would actually want someone to click.</span>
+            <strong>AI / ML workflows</strong>
+            <span>I’m learning how AI can support research, publishing, analysis, and better decision-making systems.</span>
           </div>
           <div class="detail">
-            <strong>Short project context</strong>
-            <span>What it does, what it teaches, and what you improved.</span>
+            <strong>Building useful projects</strong>
+            <span>I try to show interest through actual projects, tools, and experiments rather than only listing skills.</span>
           </div>
           <div class="detail">
-            <strong>Easy contact</strong>
-            <span>Email, LinkedIn, and GitHub without making people hunt for them.</span>
+            <strong>Chess and strategy</strong>
+            <span>Chess keeps me interested in pattern recognition, patience, decision-making, and long-term thinking.</span>
           </div>
         </div>
       </div>
@@ -649,12 +671,13 @@
       <div class="wrap">
         <div class="contact-band">
           <div>
-            <h2>Want to talk markets, valuation, or project ideas?</h2>
-            <p>I am always happy to connect, compare notes, or get feedback on the lab.</p>
+            <h2>Want to talk markets, technology, or project ideas?</h2>
+            <p>I’m happy to connect, compare notes, or share more about what I’m building.</p>
           </div>
           <div class="hero-actions" style="margin-top: 0;">
             <a class="button primary" href="mailto:minnehanjames@gmail.com">minnehanjames@gmail.com</a>
             <a class="button" href="https://www.linkedin.com/in/james-thomas-minnehan-975b7533b/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="button disabled" href="#" aria-disabled="true">Resume Coming Soon</a>
           </div>
         </div>
       </div>
