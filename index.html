@@ -21,13 +21,8 @@
       --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -37,16 +32,11 @@
       line-height: 1.55;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .topbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 20;
       border-bottom: 1px solid rgba(247, 243, 232, 0.12);
       background: rgba(7, 9, 13, 0.74);
@@ -73,8 +63,7 @@
     }
 
     .brand-mark {
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border: 1px solid rgba(247, 243, 232, 0.36);
       display: grid;
       place-items: center;
@@ -107,9 +96,7 @@
       position: relative;
       min-height: 96vh;
       overflow: hidden;
-      background:
-        linear-gradient(120deg, rgba(7, 9, 13, 0.92), rgba(10, 16, 20, 0.82)),
-        #07090d;
+      background: linear-gradient(120deg, rgba(7,9,13,0.92), rgba(10,16,20,0.82)), #07090d;
       color: var(--ink);
       display: grid;
       align-items: end;
@@ -119,8 +106,7 @@
     #signal-canvas {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       opacity: 0.85;
     }
 
@@ -129,7 +115,7 @@
       position: absolute;
       inset: auto 0 0;
       height: 28vh;
-      background: linear-gradient(0deg, rgba(251, 248, 239, 1), rgba(251, 248, 239, 0));
+      background: linear-gradient(0deg, rgba(251,248,239,1), rgba(251,248,239,0));
       pointer-events: none;
     }
 
@@ -157,7 +143,6 @@
       max-width: 840px;
       font-size: clamp(48px, 9vw, 116px);
       line-height: 0.9;
-      letter-spacing: 0;
     }
 
     .hero-copy {
@@ -195,19 +180,12 @@
       border-color: var(--ink);
     }
 
-    .button:hover {
-      transform: translateY(-1px);
-    }
-
-    .button.disabled {
-      opacity: 0.62;
-      cursor: not-allowed;
-    }
+    .button:hover { transform: translateY(-1px); }
 
     .lab-panel {
       border: 1px solid var(--line);
       background: rgba(8, 12, 16, 0.74);
-      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.32);
       padding: 18px;
     }
 
@@ -219,45 +197,25 @@
       color: var(--muted);
     }
 
-    .ticker {
-      display: grid;
-      gap: 10px;
-    }
+    .ticker { display: grid; gap: 10px; }
 
     .ticker-row {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 12px;
-      border-bottom: 1px solid rgba(247, 243, 232, 0.1);
+      border-bottom: 1px solid rgba(247,243,232,0.1);
       padding-bottom: 10px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 13px;
     }
 
-    .ticker-row:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
+    .ticker-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .ticker-row span { color: var(--green); text-align: right; }
 
-    .ticker-row span {
-      color: var(--green);
-      text-align: right;
-    }
+    .section { position: relative; padding: 88px 20px; }
+    .section.dark { background: var(--night); color: var(--ink); }
 
-    .section {
-      position: relative;
-      padding: 88px 20px;
-    }
-
-    .section.dark {
-      background: var(--night);
-      color: var(--ink);
-    }
-
-    .wrap {
-      width: min(var(--max), 100%);
-      margin: 0 auto;
-    }
+    .wrap { width: min(var(--max), 100%); margin: 0 auto; }
 
     .section-title {
       display: grid;
@@ -271,17 +229,10 @@
       margin: 0;
       font-size: clamp(32px, 5vw, 58px);
       line-height: 1.02;
-      letter-spacing: 0;
     }
 
-    .section-title p {
-      margin: 0;
-      color: #5e6467;
-    }
-
-    .dark .section-title p {
-      color: var(--muted);
-    }
+    .section-title p { margin: 0; color: #5e6467; }
+    .dark .section-title p { color: var(--muted); }
 
     .project-grid {
       display: grid;
@@ -305,35 +256,15 @@
       grid-column: span 2;
       background: #101820;
       color: var(--ink);
-      border-color: rgba(247, 243, 232, 0.22);
+      border-color: rgba(247,243,232,0.22);
     }
 
-    .project-card:hover {
-      border-color: #0f766e;
-      transform: translateY(-2px);
-    }
+    .project-card:hover { border-color: #0f766e; transform: translateY(-2px); }
 
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .project-card h3 {
-      margin: 0;
-      font-size: 24px;
-      line-height: 1.1;
-    }
-
-    .project-card p {
-      margin: 12px 0 0;
-      color: #5e6467;
-    }
-
-    .project-card.featured p {
-      color: #cbd5d7;
-    }
+    .project-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .project-card h3 { margin: 0; font-size: 24px; line-height: 1.1; }
+    .project-card p { margin: 12px 0 0; color: #5e6467; }
+    .project-card.featured p { color: #cbd5d7; }
 
     .tag {
       flex: 0 0 auto;
@@ -345,21 +276,10 @@
       letter-spacing: 0.12em;
     }
 
-    .featured .tag {
-      color: var(--green);
-    }
+    .featured .tag { color: var(--green); }
 
-    .project-links {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .project-links a {
-      border-bottom: 1px solid currentColor;
-    }
+    .project-links { display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; font-weight: 700; }
+    .project-links a { border-bottom: 1px solid currentColor; }
 
     .split {
       display: grid;
@@ -375,35 +295,20 @@
       font-size: 19px;
     }
 
-    .story p {
-      margin: 0 0 16px;
-    }
+    .story p { margin: 0 0 16px; }
+    .story p:last-child { margin-bottom: 0; }
 
-    .story p:last-child {
-      margin-bottom: 0;
-    }
-
-    .detail-list {
-      display: grid;
-      gap: 10px;
-    }
+    .detail-list { display: grid; gap: 10px; }
 
     .detail {
       border: 1px solid var(--line);
       padding: 14px;
-      background: rgba(255, 255, 255, 0.035);
+      background: rgba(255,255,255,0.035);
       border-radius: 8px;
     }
 
-    .detail strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--green);
-    }
-
-    .detail span {
-      color: var(--muted);
-    }
+    .detail strong { display: block; margin-bottom: 4px; color: var(--green); }
+    .detail span { color: var(--muted); }
 
     .contact-band {
       border-top: 1px solid var(--line-dark);
@@ -421,10 +326,7 @@
       line-height: 1;
     }
 
-    .contact-band p {
-      margin: 0;
-      color: #5e6467;
-    }
+    .contact-band p { margin: 0; color: #5e6467; }
 
     footer {
       padding: 28px 20px 42px;
@@ -433,56 +335,21 @@
       font-size: 13px;
     }
 
-    footer .wrap {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
     @media (max-width: 900px) {
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-inner,
-      .section-title,
-      .split,
-      .contact-band {
-        grid-template-columns: 1fr;
-      }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-card.featured {
-        grid-column: auto;
-      }
-
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .ticker-row {
-        grid-template-columns: 1fr;
-      }
-
-      .ticker-row span {
-        text-align: left;
-      }
+      .hero { min-height: auto; }
+      .hero-inner, .section-title, .split, .contact-band { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: auto; }
+      .nav { align-items: flex-start; flex-direction: column; }
+      .ticker-row { grid-template-columns: 1fr; }
+      .ticker-row span { text-align: left; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .button:hover,
-      .project-card:hover {
-        transform: none;
-      }
+      html { scroll-behavior: auto; }
+      .button:hover, .project-card:hover { transform: none; }
     }
   </style>
 </head>
@@ -510,7 +377,7 @@
           <p class="eyebrow">Finance, markets, AI/ML, and student-built systems</p>
           <h1 id="hero-title">James Minnehan builds finance and market tools.</h1>
           <p class="hero-copy">
-            I’m a freshman student-builder interested in finance, AI/ML, and markets. I build projects that help me understand valuation, risk, market trends, and how technology can make financial analysis clearer and faster.
+            I'm a finance student at Universidad de Navarra interested in markets, valuation, and AI. I build projects that sharpen how I think about financial analysis, risk, and systems.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#projects">View Projects</a>
@@ -538,7 +405,7 @@
         <div class="section-title">
           <h2>Projects that show how I think and build.</h2>
           <p>
-            These projects connect my interests in finance, markets, AI, and systems. I’m still early, but I’m focused on building useful work instead of only talking about what I’m interested in.
+            These projects connect my interests in finance, markets, AI, and systems. I'm focused on building useful work instead of only talking about what I'm interested in.
           </p>
         </div>
 
@@ -566,7 +433,7 @@
                 <span class="tag">Markets</span>
               </div>
               <p>
-                A market newsletter built with a 5-person team, focused on clear and concise updates on markets, macro, and key trends. I worked on improving the research and publishing system behind it, including using AI to make content faster and more structured.
+                A market newsletter focused on clear and concise updates on markets, macro, and key trends. I built and maintain the research and publishing system behind it, including Supabase, Resend, and AI-assisted content workflows.
               </p>
             </div>
             <div class="project-links">
@@ -647,17 +514,17 @@
         <div>
           <p class="eyebrow">About me</p>
           <h2 style="margin: 0 0 18px; font-size: clamp(34px, 5vw, 62px); line-height: 1.02;">
-            I’m interested in the intersection of finance, technology, and markets.
+            I'm interested in the intersection of finance, technology, and markets.
           </h2>
           <div class="story">
             <p>
-              I’m a freshman student currently transferring to Universidad de Navarra. I’m focused on finance, AI/ML, and markets, and I like building small projects that turn ideas into something people can actually use.
+              I'm a finance student at Universidad de Navarra in Pamplona, Spain, currently interning in FP&A at CrossCountry Consulting in Washington D.C. I grew up across six countries and bring that international perspective into how I think about markets and capital.
             </p>
             <p>
-              Through FinTrend News and my finance tools, I’ve learned how to work around different systems, organize research, and use AI beyond the surface level to make workflows faster and more structured.
+              Through FinTrend News and my finance tools, I've learned how to work across different systems, organize research, and use AI beyond the surface level to make workflows faster and more structured.
             </p>
             <p>
-              Right now, I’m focused on building stronger projects at the intersection of finance, markets, and technology while continuing to improve how I think through research, models, and systems.
+              I'm building toward a career in investment banking or private equity, with a particular interest in Latin American markets. Right now I'm focused on strengthening my models, tools, and research skills while studying in Europe.
             </p>
           </div>
         </div>
@@ -665,19 +532,19 @@
         <div class="detail-list" aria-label="Personal focus areas">
           <div class="detail">
             <strong>Markets and finance</strong>
-            <span>I’m interested in valuation, market trends, investing, and how financial decisions are made.</span>
+            <span>Valuation, market trends, investing, and how financial decisions get made across geographies.</span>
           </div>
           <div class="detail">
             <strong>AI / ML workflows</strong>
-            <span>I’m learning how AI can support research, publishing, analysis, and better decision-making systems.</span>
+            <span>Using AI to support research, publishing, financial analysis, and better decision-making systems.</span>
           </div>
           <div class="detail">
             <strong>Building useful projects</strong>
-            <span>I try to show interest through actual projects, tools, and experiments rather than only listing skills.</span>
+            <span>I show interest through actual tools and experiments rather than listing skills.</span>
           </div>
           <div class="detail">
             <strong>Chess and strategy</strong>
-            <span>Chess keeps me interested in pattern recognition, patience, decision-making, and long-term thinking.</span>
+            <span>Pattern recognition, patience, and long-term thinking applied beyond the board.</span>
           </div>
         </div>
       </div>
@@ -688,7 +555,7 @@
         <div class="contact-band">
           <div>
             <h2>Want to talk markets, technology, or project ideas?</h2>
-            <p>I’m happy to connect, compare notes, or share more about what I’m building.</p>
+            <p>I'm happy to connect, compare notes, or share more about what I'm building.</p>
           </div>
           <div class="hero-actions" style="margin-top: 0;">
             <a class="button primary" href="mailto:minnehanjames@gmail.com">minnehanjames@gmail.com</a>
@@ -711,9 +578,7 @@
     const canvas = document.getElementById("signal-canvas");
     const ctx = canvas.getContext("2d");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let width = 0;
-    let height = 0;
-    let points = [];
+    let width = 0, height = 0, points = [];
     let mouse = { x: 0.5, y: 0.5 };
 
     function resize() {
@@ -728,55 +593,38 @@
 
     function buildPoints() {
       const count = Math.max(48, Math.floor((width * height) / 25000));
-      points = Array.from({ length: count }, (_, index) => ({
-        x: (index * 181) % Math.max(width, 1),
-        y: (index * 97) % Math.max(height, 1),
-        vx: ((index % 7) - 3) * 0.035,
-        vy: ((index % 5) - 2) * 0.035,
-        size: 1 + (index % 3) * 0.55
+      points = Array.from({ length: count }, (_, i) => ({
+        x: (i * 181) % Math.max(width, 1),
+        y: (i * 97) % Math.max(height, 1),
+        vx: ((i % 7) - 3) * 0.035,
+        vy: ((i % 5) - 2) * 0.035,
+        size: 1 + (i % 3) * 0.55
       }));
     }
 
     function drawGrid() {
-      ctx.strokeStyle = "rgba(247, 243, 232, 0.055)";
+      ctx.strokeStyle = "rgba(247,243,232,0.055)";
       ctx.lineWidth = 1;
       const gap = 46;
-      for (let x = 0; x < width; x += gap) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
-      for (let y = 0; y < height; y += gap) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
-      }
+      for (let x = 0; x < width; x += gap) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,height); ctx.stroke(); }
+      for (let y = 0; y < height; y += gap) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(width,y); ctx.stroke(); }
     }
 
     function drawTape(time) {
       const baseY = height * 0.23;
       ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgba(78, 201, 162, 0.48)";
+      ctx.strokeStyle = "rgba(78,201,162,0.48)";
       ctx.beginPath();
       for (let x = 0; x <= width; x += 8) {
-        const y = baseY +
-          Math.sin(x * 0.012 + time * 0.0011) * 24 +
-          Math.sin(x * 0.031 + time * 0.0008) * 10;
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+        const y = baseY + Math.sin(x*0.012+time*0.0011)*24 + Math.sin(x*0.031+time*0.0008)*10;
+        x === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
       }
       ctx.stroke();
-
-      ctx.strokeStyle = "rgba(103, 169, 255, 0.34)";
+      ctx.strokeStyle = "rgba(103,169,255,0.34)";
       ctx.beginPath();
       for (let x = 0; x <= width; x += 8) {
-        const y = height * 0.58 +
-          Math.sin(x * 0.01 + time * 0.0007) * 35 +
-          Math.cos(x * 0.02 + time * 0.001) * 14;
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+        const y = height*0.58 + Math.sin(x*0.01+time*0.0007)*35 + Math.cos(x*0.02+time*0.001)*14;
+        x === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
       }
       ctx.stroke();
     }
@@ -786,53 +634,36 @@
         const p = points[i];
         const pullX = (mouse.x * width - p.x) * 0.00003;
         const pullY = (mouse.y * height - p.y) * 0.00003;
-        if (!reducedMotion) {
-          p.x += p.vx + pullX;
-          p.y += p.vy + pullY;
-        }
+        if (!reducedMotion) { p.x += p.vx + pullX; p.y += p.vy + pullY; }
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
-
-        ctx.fillStyle = i % 5 === 0 ? "rgba(216, 179, 95, 0.72)" : "rgba(247, 243, 232, 0.6)";
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        for (let j = i + 1; j < points.length; j++) {
+        ctx.fillStyle = i % 5 === 0 ? "rgba(216,179,95,0.72)" : "rgba(247,243,232,0.6)";
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+        for (let j = i+1; j < points.length; j++) {
           const q = points[j];
-          const dx = p.x - q.x;
-          const dy = p.y - q.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const dx = p.x-q.x, dy = p.y-q.y;
+          const dist = Math.sqrt(dx*dx+dy*dy);
           if (dist < 118) {
-            ctx.strokeStyle = `rgba(78, 201, 162, ${0.16 * (1 - dist / 118)})`;
+            ctx.strokeStyle = `rgba(78,201,162,${0.16*(1-dist/118)})`;
             ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
           }
         }
       }
     }
 
     function frame(time) {
-      ctx.clearRect(0, 0, width, height);
-      drawGrid();
-      drawTape(time);
-      drawPoints();
+      ctx.clearRect(0,0,width,height);
+      drawGrid(); drawTape(time); drawPoints();
       if (!reducedMotion) requestAnimationFrame(frame);
     }
 
     window.addEventListener("resize", resize);
-    window.addEventListener("pointermove", (event) => {
-      mouse = {
-        x: event.clientX / Math.max(window.innerWidth, 1),
-        y: event.clientY / Math.max(window.innerHeight, 1)
-      };
+    window.addEventListener("pointermove", e => {
+      mouse = { x: e.clientX / Math.max(window.innerWidth,1), y: e.clientY / Math.max(window.innerHeight,1) };
     });
 
-    resize();
-    frame(0);
+    resize(); frame(0);
   </script>
 </body>
 </html>
